@@ -1,56 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Mousmitha ❤️</title>
+<title>Monica ❤️ Mousmitha</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+
 body {
-  background: linear-gradient(135deg, #ff4e8a, #ff9a9e);
+  background: radial-gradient(circle at top, #ff5fa2, #ff1b6b);
   color: white;
   text-align: center;
   overflow-x: hidden;
 }
 
 h1 {
-  margin-top: 40px;
-  font-size: 2.2em;
+  margin-top: 30px;
+  font-size: 2.4em;
   animation: glow 2s infinite alternate;
 }
 
 @keyframes glow {
   from { text-shadow: 0 0 10px #fff; }
-  to { text-shadow: 0 0 25px #ffeb3b; }
+  to { text-shadow: 0 0 30px gold; }
 }
 
-p { margin: 20px; font-size: 1.1em; }
+.poem {
+  margin: 25px;
+  font-size: 1.15em;
+  line-height: 1.8;
+}
 
 .gallery img {
   width: 85%;
-  max-width: 320px;
+  max-width: 330px;
   border-radius: 20px;
   margin: 15px auto;
   display: block;
-  box-shadow: 0 10px 20px rgba(0,0,0,.4);
+  box-shadow: 0 15px 25px rgba(0,0,0,.4);
 }
 
 .buttons {
   margin: 30px;
+  position: relative;
+  height: 120px;
 }
 
 button {
-  padding: 15px 30px;
+  padding: 15px 32px;
   font-size: 1.1em;
   border: none;
   border-radius: 30px;
   cursor: pointer;
-  margin: 10px;
 }
 
 #yes {
-  background: #00e676;
+  background: #00ff9c;
   color: black;
 }
 
@@ -78,19 +84,32 @@ canvas {
   left: 0;
   pointer-events: none;
 }
+
+#ring {
+  font-size: 80px;
+  display: none;
+  animation: pop 1s ease infinite alternate;
+}
+
+@keyframes pop {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); }
+}
 </style>
 </head>
 
 <body onclick="playMusic()">
 
-<h1>Monica Raja ❤️ Mousmitha</h1>
+<h1>மோனிகா ராஜா ❤️ மௌஸ்மிதா</h1>
 
-<p>
-நீ சிரிச்சா உலகமே அழகா தெரியும்…  
-உன் குரலில் என் இதயம் வீடு கட்டிக்கிட்டது 💖  
-என் வாழ்க்கை முழுக்க…  
-**நீயா இருக்கிறியா?** 🥺❤️
-</p>
+<div class="poem">
+நீ சிரிக்கும் அந்த ஒரு நொடியில்  
+என் உலகம் நிற்கிறது 💫<br><br>
+உன் குரல் என் இதயத்தின் பிடித்த இசை 🎶<br>
+உன் பார்வை என் வாழ்க்கையின் வெளிச்சம் ✨<br><br>
+இந்த வாழ்க்கை முழுவதும்  
+**என் கை பிடித்து நடப்பாயா?** 💍❤️
+</div>
 
 <div class="gallery">
   <img src="photo1.jpg">
@@ -104,8 +123,9 @@ canvas {
   <button id="no" onmouseover="moveNo()">NO 😜</button>
 </div>
 
-<canvas id="fireworks"></canvas>
+<div id="ring">💍</div>
 
+<canvas id="fireworks"></canvas>
 <audio id="music" src="music.mp3"></audio>
 
 <script>
@@ -123,14 +143,15 @@ setInterval(() => {
 function moveNo() {
   const no = document.getElementById('no');
   no.style.left = Math.random() * 80 + 'vw';
-  no.style.top = Math.random() * 80 + 'vh';
+  no.style.top = Math.random() * 60 + 'px';
 }
 
-// YES click
+// YES button
 function yesClick() {
-  alert("YAY!!! 💖 I LOVE YOU ❤️");
+  document.getElementById('ring').style.display = 'block';
   startFireworks();
-  const text = encodeURIComponent("I said YES ❤️💍");
+  alert("She said YES 💖💍");
+  const text = encodeURIComponent("I said YES ❤️💍 Forever starts now!");
   window.open(`https://wa.me/?text=${text}`, '_blank');
 }
 
@@ -149,13 +170,13 @@ canvas.height = innerHeight;
 let particles = [];
 
 function startFireworks() {
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 250; i++) {
     particles.push({
       x: canvas.width / 2,
       y: canvas.height / 2,
-      vx: (Math.random() - 0.5) * 8,
-      vy: (Math.random() - 0.5) * 8,
-      life: 100
+      vx: (Math.random() - 0.5) * 9,
+      vy: (Math.random() - 0.5) * 9,
+      life: 120
     });
   }
   animate();
@@ -167,7 +188,7 @@ function animate() {
     p.x += p.vx;
     p.y += p.vy;
     p.life--;
-    ctx.fillStyle = 'yellow';
+    ctx.fillStyle = 'gold';
     ctx.fillRect(p.x, p.y, 3, 3);
     if (p.life <= 0) particles.splice(i, 1);
   });
