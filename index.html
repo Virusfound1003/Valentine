@@ -1,139 +1,152 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Heart, Gift, Sparkles } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Surprise ❤️</title>
 
-export default function ValentinesWebsite() {
-  const [step, setStep] = useState(0);
-  const [yesClicked, setYesClicked] = useState(false);
-  const [noPosition, setNoPosition] = useState({ x: 0, y: 0 });
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd1dc, #ff9eb5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-  const messages = [
-    "Hi Moni ❤️",
-    "I made something special just for you ✨",
-    "Because you are the most beautiful part of my life 💖",
-    "Will you be my Valentine forever? 💍"
-  ];
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  max-width: 600px;
+  text-align: center;
+}
 
-  const handleNoHover = () => {
-    const randomX = Math.floor(Math.random() * 200) - 100;
-    const randomY = Math.floor(Math.random() * 200) - 100;
-    setNoPosition({ x: randomX, y: randomY });
-  };
+h1, h2 {
+  color: #e91e63;
+}
 
-  return (
-    <>
-      {/* Background Music */}
-      <audio autoPlay loop>
-        <source src="/music.mp3" type="audio/mp3" />
-      </audio>
+button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+}
 
-      <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-200 to-pink-300 flex items-center justify-center p-6">
-        <Card className="w-full max-w-xl shadow-2xl rounded-2xl">
-          <CardContent className="p-8 text-center space-y-6">
+.yes {
+  background: #ff4081;
+  color: white;
+}
 
-            {/* Photo Gallery */}
-            <div className="flex justify-center gap-4 flex-wrap">
-              <img
-                src="/photo1.jpg"
-                alt="Memory 1"
-                className="w-24 h-24 object-cover rounded-2xl shadow-md"
-              />
-              <img
-                src="/photo2.jpg"
-                alt="Memory 2"
-                className="w-24 h-24 object-cover rounded-2xl shadow-md"
-              />
-              <img
-                src="/photo3.jpg"
-                alt="Memory 3"
-                className="w-24 h-24 object-cover rounded-2xl shadow-md"
-              />
-            </div>
+.no {
+  background: white;
+  border: 2px solid #ff4081;
+}
 
-            <AnimatePresence mode="wait">
-              {!yesClicked ? (
-                <motion.div
-                  key={step}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="space-y-6"
-                >
-                  <h1 className="text-3xl font-bold text-rose-600 flex justify-center items-center gap-2">
-                    <Heart className="w-8 h-8" />
-                    Valentine Surprise
-                  </h1>
+.gallery img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin: 5px;
+}
 
-                  <p className="text-lg text-gray-700 min-h-[80px]">
-                    {messages[step]}
-                  </p>
+.letter {
+  max-height: 300px;
+  overflow-y: auto;
+  text-align: left;
+  white-space: pre-line;
+  margin-top: 15px;
+}
+</style>
+</head>
 
-                  {step < messages.length - 1 ? (
-                    <Button
-                      className="rounded-2xl px-6 py-2"
-                      onClick={() => setStep(step + 1)}
-                    >
-                      Next 💌
-                    </Button>
-                  ) : (
-                    <div className="flex justify-center gap-6 relative">
-                      <Button
-                        className="rounded-2xl px-6 py-2 text-lg"
-                        onClick={() => setYesClicked(true)}
-                      >
-                        Yes ❤️
-                      </Button>
+<body>
 
-                      <motion.div
-                        animate={{ x: noPosition.x, y: noPosition.y }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        <Button
-                          variant="outline"
-                          onMouseEnter={handleNoHover}
-                          className="rounded-2xl px-6 py-2 text-lg"
-                        >
-                          No 🙈
-                        </Button>
-                      </motion.div>
-                    </div>
-                  )}
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="yes"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6 }}
-                  className="space-y-6"
-                >
-                  <h2 className="text-3xl font-bold text-rose-600 flex justify-center items-center gap-2">
-                    <Sparkles className="w-8 h-8" />
-                    You Said Yes! 💖
-                  </h2>
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
 
-                  {/* Love Letter */}
-                  <div className="text-lg text-gray-700 max-h-80 overflow-y-auto whitespace-pre-line px-2">
+<div class="card">
+
+<div class="gallery">
+  <img src="photo1.jpg">
+  <img src="photo2.jpg">
+  <img src="photo3.jpg">
+</div>
+
+<h1 id="title">Valentine Surprise ❤️</h1>
+
+<p id="message">Hi Moni ❤️</p>
+
+<div id="buttons">
+  <button onclick="nextMessage()">Next 💌</button>
+</div>
+
+</div>
+
+<script>
+let step = 0;
+
+const messages = [
+  "Hi Moni ❤️",
+  "I made something special just for you ✨",
+  "Because you are the most beautiful part of my life 💖",
+  "Will you be my Valentine forever? 💍"
+];
+
+function nextMessage() {
+  step++;
+  if (step < messages.length - 1) {
+    document.getElementById("message").innerText = messages[step];
+  } else {
+    document.getElementById("message").innerText = messages[step];
+    document.getElementById("buttons").innerHTML = `
+      <button class="yes" onclick="showLetter()">Yes ❤️</button>
+      <button class="no" onmouseover="moveNo(this)">No 🙈</button>
+    `;
+  }
+}
+
+function moveNo(btn) {
+  btn.style.position = "relative";
+  btn.style.left = Math.random() * 200 - 100 + "px";
+  btn.style.top = Math.random() * 200 - 100 + "px";
+}
+
+function showLetter() {
+  document.getElementById("title").innerText = "You Said Yes! 💖";
+  document.getElementById("buttons").innerHTML = "";
+
+  document.getElementById("message").innerHTML = `
+  <div class="letter">
 Moni,
 Happy Valentine’s Day, en chellam.
-Three years… moondru varusham. But nijama sollanum na, it still feels like yesterday dhaan namma office la first time paathadhu. Rendu perum normal colleagues… normal work… but kadhal silently start aagiduchu.
+Three years… moondru varusham. But nijama sollanum na, it still feels like yesterday dhaan namma office la first time paathadhu.
 
-I still remember those small glances… unnecessary reasons to come near your desk… random conversations that meant nothing but felt like everything. Appo theriyala, that the girl with that azhagana dimple and that one single strand of hair falling on her face would become en ulagam.
+Rendu perum normal colleagues… but kadhal silently start aagiduchu.
 
-Moni, un dimple paatha udane en manasu calm aagidum. And that one stubborn strand of hair un mugathula vandhu vizhum pothu… enakku adha gently move pannitu “naan iruken” nu sollanum pola irukum.
+Un dimple paatha udane en manasu calm aagidum.
+Andha one strand of hair un mugathula vizhum pothu… naan iruken nu sollanum pola irukum.
 
-Indha 3 varusham la nee enaku kudutha santhosham… words la explain panna mudiyadhu. Nee en vazhkaila oru mukkiyamaana part aayita.
+Bangalore phase… adha ninaicha kooda enakku guilt varudhu.
+Naan unnai ignore panninen.
+Adhu en thappu, Moni.
 
-Bangalore phase… adha ninaicha kooda enakku guilt varudhu. Naan unnai ignore panninen. Un feelings ah purinjikaama ponaen. Nee lonely ah feel pannina… aana naan realise panna late aayiduchu. Adhu en thappu, Moni.
+Aana nee vittu pogala.
+Nee namma kadhal ah kaapathina.
 
-Andha phase dhaan enaku kathukoduthuchu — love na responsibility. Love na understanding. Love na “naan un kooda iruken” nu kaatardhu.
+Love na responsibility.
+Love na understanding.
+Love na “naan un kooda iruken” nu kaatardhu.
 
 Indha Valentine’s Day la naan oru urudhi solren —
 Ego mela kadhal ah choose panren.
-Naan unai life full ah happy ah vechikanum.
 
 Nee en safe place.
 Nee en blessing.
@@ -142,17 +155,10 @@ Happy Valentine’s Day, en Moni.
 En uyir, en kadhal, en future.
 Forever unnudan,
 Unnoda aalu 🤍
-                  </div>
-
-                  <div className="flex justify-center">
-                    <Gift className="w-16 h-16 text-rose-500 animate-bounce" />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </CardContent>
-        </Card>
-      </div>
-    </>
-  );
+  </div>
+  `;
 }
+</script>
+
+</body>
+</html>
